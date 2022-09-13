@@ -1,0 +1,12 @@
+.App {
+    text-align: center;
+    height: 400vh;
+}
+
+.App-header {
+    background-color: #282c34;
+    position: sticky;
+    top: 10px;
+    color: white;
+    padding: 10px;
+}
