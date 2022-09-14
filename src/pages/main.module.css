@@ -1,9 +1,9 @@
-.App {
+.app {
     text-align: center;
     height: 400vh;
 }
 
-.App-header {
+.app-header {
     background-color: #282c34;
     position: sticky;
     top: 10px;

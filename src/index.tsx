@@ -1,11 +1,18 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
+import { createRoot } from 'react-dom/client'
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-root.render(
+import { Main } from './pages/Main'
+import './index.css'
+
+const rootElement = document.createElement('div')
+const root = createRoot(rootElement)
+
+document.body.append(rootElement)
+
+const App = () => (
     <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+        <Main />
+    </React.StrictMode>
 )
+
+root.render(<App />)
