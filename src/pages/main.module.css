@@ -1,12 +1,111 @@
-.app {
+.container {
     text-align: center;
-    height: 400vh;
 }
 
-.app-header {
-    background-color: #282c34;
+.header {
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    position: -webkit-sticky;
     position: sticky;
-    top: 10px;
+    top: 0px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    padding: 0 15vw;
+}
+
+.logo-container {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 16px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 16px;
+    margin-left: 10px;
+}
+
+.navigation {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.navigation > ol {
+    list-style-type: none;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.navigation > ol > li {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+}
+
+.navigation > ol > li a {
+    text-decoration: none;
+    color: inherit;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.try-for-free {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.try-for-free > a {
+    padding: 8px 20px;
+    background: #0a84ff;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
     color: white;
-    padding: 10px;
+    text-decoration: none;
+}
+
+.block {
+    width: 100%;
+    height: 100vh;
+}
+
+.light {
+    background-color: #f5f5f7;
+}
+
+.dark {
+    background-color: #101010;
 }
