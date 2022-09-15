@@ -74,29 +74,6 @@
     gap: 4px;
 }
 
-.try-for-free {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.try-for-free > a {
-    padding: 8px 20px;
-    background: #0a84ff;
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 20px;
-    color: white;
-    text-decoration: none;
-}
-
 .block {
     width: 100%;
     height: 100vh;

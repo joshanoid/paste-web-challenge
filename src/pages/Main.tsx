@@ -4,6 +4,7 @@ import { BsChevronDown } from 'react-icons/bs'
 
 import styles from './main.module.css'
 import logo from './paste-logo.svg'
+import { LinkButton } from '../components/LinkButton'
 
 export const Main = () => (
     <div className={styles.container}>
@@ -28,9 +29,7 @@ export const Main = () => (
                     <li>Pricing</li>
                 </ol>
             </nav>
-            <div className={styles['try-for-free']}>
-                <a href="#try">Try for free</a>
-            </div>
+            <LinkButton title="Try for free" href="#try" />
         </header>
         <section className={cn(styles.block, styles.light)} />
         <section className={cn(styles.block, styles.dark)} />
