@@ -21,9 +21,16 @@
 }
 
 .logo-container {
+    display: -webkit-box;
+    display: flex;
+}
+
+.logo-container > a {
     font-weight: 600;
     font-size: 20px;
     line-height: 16px;
+    text-decoration: none;
+    color: inherit;
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -42,36 +49,10 @@
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-}
-
-.navigation > ol {
-    list-style-type: none;
-    display: -webkit-box;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     flex-direction: row;
-    gap: 40px;
-}
-
-.navigation > ol > li {
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 20px;
-    letter-spacing: 0.2px;
-}
-
-.navigation > ol > li a {
-    text-decoration: none;
-    color: inherit;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    flex-direction: row;
-    -webkit-box-align: center;
-    align-items: center;
-    gap: 4px;
+    /* gap: 40px; */
 }
 
 .block {
