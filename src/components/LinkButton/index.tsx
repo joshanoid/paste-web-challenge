@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import styles from './LinkButton.module.css'
+import styles from './styles.module.css'
 
 type Props = {
     title: string
