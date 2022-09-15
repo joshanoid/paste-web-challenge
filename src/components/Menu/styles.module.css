@@ -22,12 +22,12 @@
 }
 
 .menu-container > a:hover {
-    background-color: #f3f4f6;
-    color: #6e6e73;
+    background-color: var(--menu-hover-color);
+    color: var(--text-hover-color);
 }
 
 .menu-container a.active {
-    color: #ababb0;
+    color: var(--text-active-color);
 }
 
 .menu-container > ol {
@@ -44,7 +44,7 @@
     -webkit-box-align: start;
     align-items: flex-start;
     padding: 0px;
-    background: #ffffff;
+    background: var(--menu-background-color);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -64,11 +64,11 @@
 }
 
 .menu-container > ol > li:hover {
-    color: #6e6e73;
+    color: var(--text-hover-color);
 }
 
 .menu-container > ol > li:active {
-    color: #ababb0;
+    color: var(--text-active-color);
 }
 
 .menu-container > ol > li a {
