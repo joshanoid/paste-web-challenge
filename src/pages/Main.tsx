@@ -6,40 +6,50 @@ import logo from './paste-logo.svg'
 import { LinkButton } from '../components/LinkButton'
 import { Menu } from '../components/Menu'
 import { resourcesSubmenus, useCasesSubmenus } from './constants'
-import { lightTheme, useTheme } from '../utils/theme'
+import { darkTheme, lightTheme, useTheme } from '../utils/theme'
 import { Theme } from '../utils/types'
+import { getTargetSection } from './utils'
 
 export const Main = () => {
     const [theme, setTheme] = React.useState<Theme>(lightTheme)
 
-    // eslint-disable-next-line no-console
-    console.log(setTheme)
-
     useTheme(theme)
 
-    // React.useEffect(() => {
-    //     const blocks = document.querySelectorAll(`.${CSS.escape(styles['content-block'])}`)
+    React.useEffect(() => {
+        const root = document.querySelector(`.${CSS.escape(styles.container)}`) as HTMLElement
+        const options = {
+            root,
+            rootMargin: `${
+                (document.querySelector<HTMLElement>(`.${CSS.escape(styles.header)}`)?.offsetHeight ?? 0) * -1
+            }px`,
+            threshold: 0,
+        }
+        let prevYPosition = 0
+        let direction: 'up' | 'down' = 'up'
 
-    //     const intersectionObserver = new IntersectionObserver((entries) => {
-    //         // If intersectionRatio is 0, the target is out of view
-    //         // and we do not need to do anything.
-    //         // eslint-disable-next-line no-console
-    //         console.log('entries', entries)
+        const blocks = [...document.querySelectorAll<HTMLElement>(`.${CSS.escape(styles['content-block'])}`)]
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                direction = root.scrollTop > prevYPosition ? 'down' : 'up'
+                prevYPosition = root.scrollTop
 
-    //         if (entries[0].intersectionRatio <= 0) {
-    //             return
-    //         }
+                const entryTarget = entry.target as HTMLElement
+                const target = direction === 'down' ? getTargetSection(blocks, entryTarget) : entryTarget
 
-    //         // eslint-disable-next-line no-console
-    //         console.log('Intersected')
-    //     })
+                if ((direction === 'down' && !entry.isIntersecting) || (direction === 'up' && entry.isIntersecting)) {
+                    setTheme(target.dataset.theme === 'light' ? lightTheme : darkTheme)
+                }
+            })
+        }, options)
 
-    //     intersectionObserver.observe(blocks)
+        blocks.forEach((block) => {
+            intersectionObserver.observe(block)
+        })
 
-    //     return () => {
-    //         intersectionObserver.disconnect()
-    //     }
-    // }, [])
+        return () => {
+            intersectionObserver.disconnect()
+        }
+    }, [])
 
     return (
         <div className={styles.container}>
@@ -58,10 +68,12 @@ export const Main = () => {
                 </nav>
                 <LinkButton title="Try for free" href="#try" />
             </header>
-            <section className={cn(styles['content-block'], styles.light)} />
-            <section className={cn(styles['content-block'], styles.dark)} />
-            <section className={cn(styles['content-block'], styles.light)} />
-            <section className={cn(styles['content-block'], styles.dark)} />
+            <main>
+                <section data-theme="light" className={cn(styles['content-block'], styles.light)} />
+                <section data-theme="dark" className={cn(styles['content-block'], styles.dark)} />
+                <section data-theme="light" className={cn(styles['content-block'], styles.light)} />
+                <section data-theme="dark" className={cn(styles['content-block'], styles.dark)} />
+            </main>
         </div>
     )
 }
