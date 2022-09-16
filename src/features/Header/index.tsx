@@ -70,7 +70,7 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
                 <Menu title="Updates" href="#updates" />
                 <Menu title="Pricing" href="#pricing" />
             </nav>
-            <LinkButton title="Try for free" href="#try" />
+            <LinkButton extraClass={styles['try-for-free']} title="Try for free" href="#try" />
         </header>
     )
 }

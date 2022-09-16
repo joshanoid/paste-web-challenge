@@ -52,3 +52,9 @@
     -webkit-box-direction: normal;
     flex-direction: row;
 }
+
+@media (max-width: 450px) {
+    .try-for-free {
+        display: none;
+    }
+}
