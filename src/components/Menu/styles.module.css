@@ -8,7 +8,7 @@
     line-height: 20px;
     letter-spacing: 0.2px;
     text-decoration: none;
-    color: inherit;
+    color: var(--text-color);
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;
@@ -63,17 +63,17 @@
     padding: 12px 24px;
 }
 
-.menu-container > ol > li:hover {
+.menu-container > ol > li a:hover {
     color: var(--text-hover-color);
 }
 
-.menu-container > ol > li:active {
+.menu-container > ol > li a:active {
     color: var(--text-active-color);
 }
 
 .menu-container > ol > li a {
     text-decoration: none;
-    color: inherit;
+    color: var(--text-color);
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;
