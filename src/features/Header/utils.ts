@@ -5,5 +5,5 @@ export const getTargetSection = (blocks: ReadonlyArray<HTMLElement>, target: HTM
         return target
     }
 
-    return blocks[index + 1]
+    return blocks[index + 1] ?? target
 }
