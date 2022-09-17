@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { LinkButton } from 'components/LinkButton'
 import { Menu } from 'components/Menu'
+import { MobileMenu } from 'components/MobileMenu'
 import { darkTheme, lightTheme, useTheme } from 'utils/theme'
 import { Theme } from 'utils/types'
 
@@ -17,6 +18,7 @@ type Props = {
 
 export const Header = ({ containerSelector, sectionSelector }: Props) => {
     const [theme, setTheme] = React.useState<Theme>(lightTheme)
+    const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
     useTheme(theme)
 
@@ -60,7 +62,7 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
         <header className={styles.header}>
             <div className={styles['logo-container']}>
                 <a href="/#">
-                    <img width={36} height={36} src={logo} alt="Logo" />
+                    <img src={logo} alt="Paste" />
                     <span className={styles['brand-name']}>Paste</span>
                 </a>
             </div>
@@ -71,6 +73,7 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
                 <Menu title="Pricing" href="#pricing" />
             </nav>
             <LinkButton extraClass={styles['try-for-free']} title="Try for free" href="#try" />
+            <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         </header>
     )
 }
