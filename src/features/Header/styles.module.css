@@ -51,7 +51,21 @@
         display: none;
     }
     .navigation {
-        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        width: 100%;
+        flex-direction: column;
+        justify-content: left;
+        align-items: flex-start;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.75s, background 0.75s, visibility 0.75s;
+    }
+    .navigation.mobile {
+        background: var(--background-color);
+        opacity: 1;
+        visibility: visible;
     }
     .logo-container > a > img {
         width: 31.98px;

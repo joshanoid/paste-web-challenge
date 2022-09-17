@@ -1,4 +1,5 @@
 import * as React from 'react'
+import cn from 'classnames'
 
 import { LinkButton } from 'components/LinkButton'
 import { Menu } from 'components/Menu'
@@ -66,7 +67,7 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
                     <span className={styles['brand-name']}>Paste</span>
                 </a>
             </div>
-            <nav className={styles.navigation}>
+            <nav className={cn(styles.navigation, { [styles.mobile ?? '']: mobileMenuOpen })}>
                 <Menu title="Use cases" href="#usecases" submenus={useCasesSubmenus} />
                 <Menu title="Resources" href="#resources" submenus={resourcesSubmenus} />
                 <Menu title="Updates" href="#updates" />

@@ -9,12 +9,8 @@
     letter-spacing: 0.2px;
     text-decoration: none;
     color: var(--text-color);
-    display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
-    -webkit-box-align: center;
     align-items: center;
     gap: 4px;
     padding: 10px 20px;
@@ -34,14 +30,10 @@
     display: none;
     list-style-type: none;
     opacity: 0;
-    -webkit-transition: opacity 0.3s ease-in-out;
     transition: opacity 0.3s ease-in-out;
     position: absolute;
     top: 30px;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
     flex-direction: column;
-    -webkit-box-align: start;
     align-items: flex-start;
     padding: 0px;
     background: var(--menu-background-color);
@@ -50,7 +42,6 @@
 }
 
 .menu-container > ol.open {
-    display: -webkit-box;
     display: flex;
     opacity: 1;
 }
@@ -74,14 +65,38 @@
 .menu-container > ol > li a {
     text-decoration: none;
     color: var(--text-color);
-    display: -webkit-box;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     flex-direction: row;
-    -webkit-box-align: center;
     align-items: center;
     gap: 4px;
     text-align: left;
     white-space: nowrap;
+}
+
+@media (max-width: 450px) {
+    .menu-container {
+        width: 100%;
+        background: var(--menu-background-color);
+    }
+    .menu-container > a {
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .menu-container > a:hover {
+        background-color: unset;
+    }
+    .menu-container > ol {
+        position: unset;
+        border-radius: unset;
+        top: unset;
+        box-shadow: unset;
+        padding: 0 0 0 20px;
+    }
+    .menu-container > ol > li a {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+    }
 }
