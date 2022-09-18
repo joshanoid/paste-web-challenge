@@ -6,18 +6,14 @@ import { Menu } from 'components/Menu'
 import { MobileMenu } from 'components/MobileMenu'
 import { darkTheme, lightTheme, useTheme } from 'utils/theme'
 import { Theme } from 'utils/types'
+import { scrollContainerClass } from 'utils/constants'
 
 import styles from './styles.module.css'
 import logo from './paste-logo.svg'
 import { resourcesSubmenus, useCasesSubmenus } from './constants'
 import { getTargetSection } from './utils'
 
-type Props = {
-    containerSelector: string
-    sectionSelector: string
-}
-
-export const Header = ({ containerSelector, sectionSelector }: Props) => {
+export const Header = () => {
     const [theme, setTheme] = React.useState<Theme>(lightTheme)
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
     const [activeMenu, setActiveMenu] = React.useState('')
@@ -25,40 +21,48 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
     useTheme(theme)
 
     React.useEffect(() => {
-        const root = document.querySelector(`.${CSS.escape(containerSelector)}`) as HTMLElement
-        const options = {
-            root,
-            rootMargin: `${
-                (document.querySelector<HTMLElement>(`.${CSS.escape(styles.header ?? '')}`)?.offsetHeight ?? 0) * -1
-            }px`,
-            threshold: 0,
-        }
-        let prevYPosition = 0
-        let direction: 'up' | 'down' = 'up'
+        const root = document.querySelector<HTMLElement>(`.${scrollContainerClass}`)
 
-        const blocks = [...document.querySelectorAll<HTMLElement>(`.${CSS.escape(sectionSelector)}`)]
-        const intersectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                direction = root.scrollTop > prevYPosition ? 'down' : 'up'
-                prevYPosition = root.scrollTop
+        if (root) {
+            const options = {
+                root,
+                rootMargin: `${
+                    (document.querySelector<HTMLElement>(`.${CSS.escape(styles.header ?? '')}`)?.offsetHeight ?? 0) * -1
+                }px`,
+                threshold: 0,
+            }
+            let prevYPosition = 0
+            let direction: 'up' | 'down' = 'up'
 
-                const entryTarget = entry.target as HTMLElement
-                const target = direction === 'down' ? getTargetSection(blocks, entryTarget) : entryTarget
+            const blocks = [...document.querySelectorAll<HTMLElement>('section')]
+            const intersectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    direction = root.scrollTop > prevYPosition ? 'down' : 'up'
+                    prevYPosition = root.scrollTop
 
-                if ((direction === 'down' && !entry.isIntersecting) || (direction === 'up' && entry.isIntersecting)) {
-                    setTheme(target.dataset.theme === 'light' ? lightTheme : darkTheme)
-                }
+                    const entryTarget = entry.target as HTMLElement
+                    const target = direction === 'down' ? getTargetSection(blocks, entryTarget) : entryTarget
+
+                    if (
+                        (direction === 'down' && !entry.isIntersecting) ||
+                        (direction === 'up' && entry.isIntersecting)
+                    ) {
+                        setTheme(target.dataset.theme === 'light' ? lightTheme : darkTheme)
+                    }
+                })
+            }, options)
+
+            blocks.forEach((block) => {
+                intersectionObserver.observe(block)
             })
-        }, options)
 
-        blocks.forEach((block) => {
-            intersectionObserver.observe(block)
-        })
-
-        return () => {
-            intersectionObserver.disconnect()
+            return () => {
+                intersectionObserver.disconnect()
+            }
         }
-    }, [containerSelector, sectionSelector])
+
+        return () => {}
+    }, [])
 
     return (
         <header className={styles.header}>
