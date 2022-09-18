@@ -20,6 +20,7 @@ type Props = {
 export const Header = ({ containerSelector, sectionSelector }: Props) => {
     const [theme, setTheme] = React.useState<Theme>(lightTheme)
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+    const [activeMenu, setActiveMenu] = React.useState('')
 
     useTheme(theme)
 
@@ -68,10 +69,22 @@ export const Header = ({ containerSelector, sectionSelector }: Props) => {
                 </a>
             </div>
             <nav className={cn(styles.navigation, { [styles.mobile ?? '']: mobileMenuOpen })}>
-                <Menu title="Use cases" href="#usecases" submenus={useCasesSubmenus} />
-                <Menu title="Resources" href="#resources" submenus={resourcesSubmenus} />
-                <Menu title="Updates" href="#updates" />
-                <Menu title="Pricing" href="#pricing" />
+                <Menu
+                    title="Use cases"
+                    href="#usecases"
+                    submenus={useCasesSubmenus}
+                    activeMenu={activeMenu}
+                    setActiveMenu={setActiveMenu}
+                />
+                <Menu
+                    title="Resources"
+                    href="#resources"
+                    submenus={resourcesSubmenus}
+                    activeMenu={activeMenu}
+                    setActiveMenu={setActiveMenu}
+                />
+                <Menu title="Updates" href="#updates" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+                <Menu title="Pricing" href="#pricing" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
             </nav>
             <LinkButton extraClass={styles['try-for-free']} title="Try for free" href="#try" />
             <MobileMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />

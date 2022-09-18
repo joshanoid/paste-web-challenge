@@ -9,11 +9,12 @@ const Chevron = ({ open }: { open: boolean }) => (open ? <BsChevronDown /> : <Bs
 type Props = {
     title: string
     href: string
+    activeMenu: string
+    setActiveMenu: React.Dispatch<React.SetStateAction<string>>
     submenus?: ReadonlyArray<{ title: string; href: string }>
 }
 
-export const Menu = ({ title, href, submenus }: Props) => {
-    const [open, setOpen] = React.useState(false)
+export const Menu = ({ title, href, activeMenu, setActiveMenu, submenus }: Props) => {
     const [activeSubmenu, setActiveSubmenu] = React.useState<string | null>(null)
 
     const activeStyle = styles.active ?? ''
@@ -21,12 +22,12 @@ export const Menu = ({ title, href, submenus }: Props) => {
 
     return (
         <div className={styles['menu-container']}>
-            <a href={href} onClick={() => setOpen(!open)} className={cn({ [activeStyle]: open })}>
+            <a href={href} onClick={() => setActiveMenu(title)} className={cn({ [activeStyle]: activeMenu === title })}>
                 {title}
-                {submenus?.length ? <Chevron open={open} /> : null}
+                {submenus?.length ? <Chevron open={activeMenu === title} /> : null}
             </a>
             {submenus?.length && (
-                <ol className={cn({ [openStyle]: open })}>
+                <ol className={cn({ [openStyle]: activeMenu === title })}>
                     {submenus.map((submenu) => (
                         <li key={submenu.title}>
                             <a
