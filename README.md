@@ -1,3 +1,9 @@
+# Paste Web Challenge
+
+Hey Dmitry,
+
+The app is a slightly enhanced CRA, I used node v16.17.0 for the implementation, so first of all run `nvm use` before doing anything (or just install the appropriate node version), then `npm install` followed by `npm start` which opens a new browser tab, but if not, just navigate to `http://localhost:3000/` and you can see the result, hope you'll like it :)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
